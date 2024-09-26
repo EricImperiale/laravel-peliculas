@@ -6,6 +6,7 @@ use App\Repositories\Interfaces\MovieRepository;
 use App\Repositories\MovieEloquentRepository;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -13,6 +13,7 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class MoviesController extends Controller
 {
@@ -146,6 +147,7 @@ class MoviesController extends Controller
     // "inyectarla" en el método del controller.
     public function processNew(Request $request)
     {
+        $this->authorize('create', Movie::class);
         // dd => dump and die
 //        dd($request);
 
@@ -290,7 +292,7 @@ class MoviesController extends Controller
                 ->route('movies.formNew')
                 ->withInput()
                 ->with('status.message', 'Ocurrió un error al grabar la información. Por favor, probá de nuevo en un rato. Si el problema persiste, comunicate con nosotros.')
-                ->with('status.type', 'error');
+                ->with('status.type', 'danger');
         }
 
         // Redireccionamos al listado.
@@ -304,7 +306,8 @@ class MoviesController extends Controller
             ->route('movies.index')
             // Escapamos el título de la película para evitar inyección de HTML, ya que el mensaje se
             // renderiza con los tags de Blade {!! !!}
-            ->with('status.message', 'La película <b>' . e($data['title']) . '</b> fue publicada con éxito.');
+            ->with('status.message', 'La película <b>' . e($data['title']) . '</b> fue publicada con éxito.')
+            ->with('status.type', 'success');
     }
 
     public function formUpdate(int $id)
@@ -320,6 +323,8 @@ class MoviesController extends Controller
     public function processUpdate(int $id, Request $request)
     {
         $movie = Movie::findOrFail($id);
+
+        $this->authorize('update', $movie);
 
         $request->validate(Movie::validationRules(), Movie::validationMessages());
 
@@ -355,7 +360,8 @@ class MoviesController extends Controller
 
         return redirect()
             ->route('movies.index')
-            ->with('status.message', 'La película <b>' . e($movie->title) . '</b> fue editada con éxito.');
+            ->with('status.message', 'La película <b>' . e($movie->title) . '</b> fue editada con éxito.')
+            ->with('status.type', 'success');
     }
 
     public function confirmDelete(int $id)
@@ -369,13 +375,16 @@ class MoviesController extends Controller
     {
         $movie = Movie::findOrFail($id);
 
+        $this->authorize('delete', $movie);
+
         $movie->delete();
 
         $this->deleteCover($movie->cover);
 
         return redirect()
             ->route('movies.index')
-            ->with('status.message', 'La película <b>' . e($movie->title) . '</b> fue eliminada con éxito.');
+            ->with('status.message', 'La película <b>' . e($movie->title) . '</b> fue eliminada con éxito.')
+            ->with('status.type', 'success');
     }
 
     /**

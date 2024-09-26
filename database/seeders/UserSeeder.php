@@ -21,6 +21,18 @@ class UserSeeder extends Seeder
                 // Hash es la de encriptación/cifrado que ofrece Laravel. Entre sus métodos, tiene uno
                 // llamado "make()" que sería similar al método password_hash de php.
                 'password' => Hash::make('123'),
+                'isAdmin' => true,
+                'remember_token' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 2,
+                'email' => 'user@hotmail.com',
+                // Hash es la de encriptación/cifrado que ofrece Laravel. Entre sus métodos, tiene uno
+                // llamado "make()" que sería similar al método password_hash de php.
+                'password' => Hash::make('123'),
+                'isAdmin' => false,
                 'remember_token' => null,
                 'created_at' => now(),
                 'updated_at' => now(),

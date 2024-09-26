@@ -87,15 +87,15 @@ class Movie extends Model
     public static function validationMessages(): array
     {
         return [
-            'title.required' => 'Tenés que escribir el título',
-            'title.min' => 'El título tiene que tener al menos 2 caracteres',
-            'price.required' => 'Tenés que escribir el precio',
-            'price.numeric' => 'El precio tiene que ser un número',
-            'release_date.required' => 'Tenés que escribir la fecha de estreno',
-            'synopsis.required' => 'Tenés que escribir la sinopsis',
-            'country_id.required' => 'Tenés que elegir el país de origen',
-            'country_id.numeric' => 'El valor seleccionado para el país de origen no es correcto. Por favor, elegí uno de la lista',
-            'country_id.exists' => 'El valor seleccionado para el país de origen no es correcto. Por favor, elegí uno de la lista',
+            'title.required' => 'Tenés que escribir el título.',
+            'title.min' => 'El título tiene que tener al menos 2 caracteres.',
+            'price.required' => 'Tenés que escribir el precio.',
+            'price.numeric' => 'El precio tiene que ser un número.',
+            'release_date.required' => 'Tenés que escribir la fecha de estreno.',
+            'synopsis.required' => 'Tenés que escribir la sinopsis.',
+            'country_id.required' => 'Tenés que elegir el país de origen.',
+            'country_id.numeric' => 'El valor seleccionado para el país de origen no es correcto. Por favor, elegí uno de la lista.',
+            'country_id.exists' => 'El valor seleccionado para el país de origen no es correcto. Por favor, elegí uno de la lista.',
         ];
     }
 

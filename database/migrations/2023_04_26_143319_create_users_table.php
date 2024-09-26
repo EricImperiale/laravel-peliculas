@@ -22,6 +22,7 @@ return new class extends Migration
             $table->id('user_id');
             $table->string('email', 255)->unique();
             $table->string('password', 255);
+            $table->boolean('isAdmin')->default(false);
             $table->rememberToken(); // Agrega el campo "remember_token"
             $table->timestamps();
         });

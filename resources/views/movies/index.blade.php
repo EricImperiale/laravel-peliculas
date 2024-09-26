@@ -13,10 +13,12 @@
 <h1 class="mb-3">Películas</h1>
 
 @auth
-<div class="mb-4">
-    <div><a href="{{ route('movies.formNew') }}">Publicar una Nueva Película</a></div>
-    <div><a href="{{ route('movies.trashed.index') }}">Ver Películas Eliminadas</a></div>
-</div>
+    @can('create', \App\Models\Movie::class)
+        <div class="mb-4">
+            <div><a href="{{ route('movies.formNew') }}">Publicar una Nueva Película</a></div>
+            <div><a href="{{ route('movies.trashed.index') }}">Ver Películas Eliminadas</a></div>
+        </div>
+    @endcan
 @endauth
 
 <section class="mb-4">
