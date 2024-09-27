@@ -38,7 +38,7 @@ class VerificarMayoriaDeEdad
         if($movie->classification_id === 4) {
             // La película es para mayores de 18.
             return redirect()
-                ->route('confirm-age.formConfirmation', ['id' => $id]);
+                ->route('movies.confirm-age.formConfirmation', ['id' => $id]);
         }
 
         return $next($request);

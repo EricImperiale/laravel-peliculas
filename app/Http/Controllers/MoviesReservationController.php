@@ -20,6 +20,7 @@ class MoviesReservationController extends Controller
 
         return redirect()
             ->route('movies.index')
-            ->with('status.message', 'La película <b>' . $movie->title . '</b> fue reservada con éxito.');
+            ->with('status.message', 'La película <b>' . $movie->title . '</b> fue reservada con éxito.')
+            ->with('status.type', 'success');
     }
 }

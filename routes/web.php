@@ -104,22 +104,24 @@ Route::post('cerrar-sesion', [\App\Http\Controllers\AuthController::class, 'proc
  | Películas
  |--------------------------------------------------------------------------
  */
-Route::get('peliculas/listado', [\App\Http\Controllers\MoviesController::class, 'index'])
-    ->name('movies.index');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group([
+        'prefix' => 'peliculas',
+        'as' => 'movies.',
+    ], function () {
+        Route::get('peliculas/listado', [\App\Http\Controllers\MoviesController::class, 'index'])
+            ->name('index');
 
-Route::get('peliculas/eliminadas', [\App\Http\Controllers\MoviesTrashedController::class, 'index'])
-    ->name('movies.trashed.index')
-    ->middleware(['auth']);
+        Route::get('peliculas/eliminadas', [\App\Http\Controllers\MoviesTrashedController::class, 'index'])
+            ->name('trashed.index');
 
 // Generalmente, las rutas que manejan las peticiones de un formulario, suelen llamarse exactamente igual
 // que las rutas que muestran el formulario. La única diferencia es el método HTTP que usamos (GET vs
 // POST).
-Route::get('peliculas/nueva', [\App\Http\Controllers\MoviesController::class, 'formNew'])
-    ->name('movies.formNew')
-    ->middleware(['auth']);
-Route::post('peliculas/nueva', [\App\Http\Controllers\MoviesController::class, 'processNew'])
-    ->name('movies.processNew')
-    ->middleware(['auth']);
+        Route::get('peliculas/nueva', [\App\Http\Controllers\MoviesController::class, 'formNew'])
+            ->name('formNew');
+        Route::post('peliculas/nueva', [\App\Http\Controllers\MoviesController::class, 'processNew'])
+            ->name('processNew');
 
 // Agregamos la ruta para el detalle de la película.
 // Este tipo de rutas, generalmente, llevan el formato de:
@@ -130,37 +132,36 @@ Route::post('peliculas/nueva', [\App\Http\Controllers\MoviesController::class, '
 // que exista en la tabla.
 // Para definir "segmentos dinámicos" de la URL, podemos usar la sintaxis {variable}, donde `variable`
 // sería el nombre del parámetro que queremos generar para la acción.
-Route::get('peliculas/{id}', [\App\Http\Controllers\MoviesController::class, 'view'])
-    ->name('movies.view')
-    ->middleware(['mayoria-de-edad']);
+        Route::get('peliculas/{id}', [\App\Http\Controllers\MoviesController::class, 'view'])
+            ->name('view')
+            ->middleware(['mayoria-de-edad']);
 
-Route::get('peliculas/{id}/confirmar-edad', [\App\Http\Controllers\ConfirmAgeController::class, 'formConfirmation'])
-    ->name('confirm-age.formConfirmation');
-Route::post('peliculas/{id}/confirmar-edad', [\App\Http\Controllers\ConfirmAgeController::class, 'processConfirmation'])
-    ->name('confirm-age.processConfirmation');
+        Route::get('peliculas/{id}/confirmar-edad', [\App\Http\Controllers\ConfirmAgeController::class, 'formConfirmation'])
+            ->name('confirm-age.formConfirmation');
+        Route::post('peliculas/{id}/confirmar-edad', [\App\Http\Controllers\ConfirmAgeController::class, 'processConfirmation'])
+            ->name('confirm-age.processConfirmation');
 
-Route::post('peliculas/{id}/reservar', [\App\Http\Controllers\MoviesReservationController::class, 'processReservation'])
-    ->name('movies.processReservation');
+        Route::post('peliculas/{id}/reservar', [\App\Http\Controllers\MoviesReservationController::class, 'processReservation'])
+            ->name('processReservation');
 
-Route::get('peliculas/{id}/editar', [\App\Http\Controllers\MoviesController::class, 'formUpdate'])
-    ->name('movies.formUpdate')
-    ->middleware(['auth']);
-Route::post('peliculas/{id}/editar', [\App\Http\Controllers\MoviesController::class, 'processUpdate'])
-    ->name('movies.processUpdate')
-    ->middleware(['auth']);
+        Route::get('peliculas/{id}/editar', [\App\Http\Controllers\MoviesController::class, 'formUpdate'])
+            ->name('formUpdate')
+            ->middleware(['auth']);
+        Route::post('peliculas/{id}/editar', [\App\Http\Controllers\MoviesController::class, 'processUpdate'])
+            ->name('processUpdate');
 
-Route::get('peliculas/{id}/eliminar', [\App\Http\Controllers\MoviesController::class, 'confirmDelete'])
-    ->name('movies.confirmDelete')
-    ->middleware(['auth']);
-Route::post('peliculas/{id}/eliminar', [\App\Http\Controllers\MoviesController::class, 'processDelete'])
-    ->name('movies.processDelete')
-    ->middleware(['auth']);
+        Route::get('peliculas/{id}/eliminar', [\App\Http\Controllers\MoviesController::class, 'confirmDelete'])
+            ->name('confirmDelete');
+        Route::post('peliculas/{id}/eliminar', [\App\Http\Controllers\MoviesController::class, 'processDelete'])
+            ->name('processDelete');
 
 
-Route::get('peliculas/eliminadas/{id}/eliminar', [\App\Http\Controllers\MoviesTrashedController::class, 'confirmDelete'])
-    ->name('movies.trashed.confirmDelete');
-Route::post('peliculas/eliminadas/{id}/eliminar', [\App\Http\Controllers\MoviesTrashedController::class, 'processDelete'])
-    ->name('movies.trashed.processDelete');
+        Route::get('peliculas/eliminadas/{id}/eliminar', [\App\Http\Controllers\MoviesTrashedController::class, 'confirmDelete'])
+            ->name('movies.trashed.confirmDelete');
+        Route::post('peliculas/eliminadas/{id}/eliminar', [\App\Http\Controllers\MoviesTrashedController::class, 'processDelete'])
+            ->name('trashed.processDelete');
+    });
+});
 
 Route::get('admin', [\App\Http\Controllers\AdminController::class, 'dashboard'])
     ->name('admin.dashboard');

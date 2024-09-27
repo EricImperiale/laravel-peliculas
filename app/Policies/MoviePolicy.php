@@ -13,7 +13,9 @@ class MoviePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->isAdmin
+            ? Response::allow()
+            : Response::denyWithStatus(403, 'No tenés permisos para realizar está acción.');
     }
 
     /**

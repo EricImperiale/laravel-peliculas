@@ -36,8 +36,14 @@
                                 @csrf
                                 <button type="submit" class="btn btn-secondary">Reservar</button>
                             </form>
-                            <a href="{{ route('movies.formUpdate', ['id' => $movie->movie_id]) }}" class="btn btn-primary">Editar</a>
-                            <a href="{{ route('movies.confirmDelete', ['id' => $movie->movie_id]) }}" class="btn btn-danger">Eliminar</a>
+
+                            @can('update', $movie)
+                                <a href="{{ route('movies.formUpdate', ['id' => $movie->movie_id]) }}" class="btn btn-primary">Editar</a>
+                            @endcan
+
+                            @can('delete', $movie)
+                                <a href="{{ route('movies.confirmDelete', ['id' => $movie->movie_id]) }}" class="btn btn-danger">Eliminar</a>
+                            @endcan
                         @endauth
                     </div>
                 </td>
