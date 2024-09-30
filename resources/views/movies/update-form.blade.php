@@ -24,7 +24,6 @@
                 @if($errors->has('title')) aria-describedby="error-title" @endif
                 value="{{ old('title', $movie->title) }}"
             >
-            {{-- Imprimimos el mensaje de error, si es que existe. --}}
             @if($errors->has('title'))
                 <div class="mt-2 text-danger" id="error-title">{{ $errors->first('title') }}</div>
             @endif
@@ -39,9 +38,6 @@
                 @error('release_date') aria-describedby="error-release_date" @enderror
                 value="{{ old('release_date', $movie->release_date) }}"
             >
-            {{-- Alternativamente, podemos usar las directivas @error y @enderror para mostrar los mensajes
-             de error. Dentro de esta directiva, podemos obtener el mensaje de error con la variable
-             $message. --}}
             @error('release_date')
                 <div class="mt-2 text-danger" id="error-release_date">{{ $message }}</div>
             @enderror
@@ -115,11 +111,6 @@
         <div class="mb-3">
             <p>Portada Actual</p>
             <x-movie-cover :movie="$movie" alt="" />
-{{--            @if($movie->cover !== null && file_exists(public_path('imgs/' . $movie->cover)))--}}
-{{--                <img src="{{ url('imgs/' . $movie->cover) }}" alt="" class="mw-100">--}}
-{{--            @else--}}
-{{--                <p>No hay una portada actual.</p>--}}
-{{--            @endif--}}
         </div>
         <div class="mb-3">
             <label for="cover" class="form-label">Portada</label>
@@ -161,8 +152,6 @@
                                 name="genre_id[]"
                                 value="{{ $genre->genre_id }}"
                                 class="form-check-input"
-                                {{-- Si existe el id de este género en el arrays de ids que se había enviado,
-                                lo marcamos para que empiece tildado. --}}
                                 @checked(in_array($genre->genre_id, old('genre_id', $movie->getGenreIds())))
                             >
                             {{ $genre->name }}

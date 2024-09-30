@@ -13,11 +13,6 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        // Acá ponemos los comandos para insertar nuevos registros en la tabla.
-        // Por ejemplo, podemos ayudarnos con la clase DB de Laravel para interactuar
-        // con la base de datos.
-        // El método table() nos permite indicar la tabla con la que queremos trabajar.
-        // El método insert() permite insertar registros.
         DB::table('movies')->insert([
             [
                 'movie_id' => 1,
@@ -76,7 +71,6 @@ class MovieSeeder extends Seeder
             ],
         ]);
 
-        // Agregamos las relaciones con géneros.
         DB::table('movies_has_genres')->insert([
             [
                 'movie_id' => 1,

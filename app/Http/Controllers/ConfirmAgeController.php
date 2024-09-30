@@ -15,10 +15,8 @@ class ConfirmAgeController extends Controller
 
     public function processConfirmation(Request $request, int $id)
     {
-        // put() es el método para guardar un valor.
         $request->session()->put('ageVerified', true);
 
-        // Lo redireccionamos a la película que el usuario quería ver.
         return redirect()
             ->route('movies.view', ['id' => $id]);
     }

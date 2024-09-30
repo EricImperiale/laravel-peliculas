@@ -12,9 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Con el método call() podemos pedir que se ejecute una clase de Seeder al
-        // correr el comando de Artisan:
-        //      php artisan db:seed
         $this->call(ClassificationSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(GenreSeeder::class);

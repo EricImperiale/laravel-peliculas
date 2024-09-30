@@ -3,8 +3,6 @@
 /** @var \App\Models\Genre[]|\Illuminate\Database\Eloquent\Collection $genres */
 /** @var \App\Models\Classification[]|\Illuminate\Database\Eloquent\Collection $classifications */
 /** @var \Illuminate\Support\ViewErrorBag $errors */
-// En todas las vistas de Laravel, siempre va a estar disponible la variable $errors.
-// Esta variable contiene, si existen, los mensajes de error.
 ?>
 @extends('layout.main')
 
@@ -25,7 +23,6 @@
                 @if($errors->has('title')) aria-describedby="error-title" @endif
                 value="{{ old('title') }}"
             >
-            {{-- Imprimimos el mensaje de error, si es que existe. --}}
             @if($errors->has('title'))
                 <div class="mt-2 text-danger" id="error-title">{{ $errors->first('title') }}</div>
             @endif
@@ -40,9 +37,6 @@
                 @error('release_date') aria-describedby="error-release_date" @enderror
                 value="{{ old('release_date') }}"
             >
-            {{-- Alternativamente, podemos usar las directivas @error y @enderror para mostrar los mensajes
-             de error. Dentro de esta directiva, podemos obtener el mensaje de error con la variable
-             $message. --}}
             @error('release_date')
                 <div class="mt-2 text-danger" id="error-release_date">{{ $message }}</div>
             @enderror
@@ -73,7 +67,6 @@
                 @foreach($countries as $country)
                     <option
                         value="{{ $country->country_id }}"
-{{--                        @if(old('country_id') == $country->country_id) selected @endif--}}
                         @selected(old('country_id') == $country->country_id)
                     >{{ $country->name }}</option>
                 @endforeach
@@ -154,8 +147,6 @@
                             name="genre_id[]"
                             value="{{ $genre->genre_id }}"
                             class="form-check-input"
-                            {{-- Si existe el id de este género en el arrays de ids que se había enviado,
-                            lo marcamos para que empiece tildado. --}}
                             @checked(in_array($genre->genre_id, old('genre_id', [])))
                         >
                         {{ $genre->name }}

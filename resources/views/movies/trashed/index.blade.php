@@ -32,27 +32,11 @@
         <td>{{ $movie->synopsis }}</td>
         <td>
             <div class="d-flex gap-1">
-                {{--<a href="{{ route('movies.view', ['id' => $movie->movie_id]) }}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('movies.formUpdate', ['id' => $movie->movie_id]) }}" class="btn btn-primary">Editar</a>--}}
                 <a href="{{ route('movies.trashed.confirmDelete', ['id' => $movie->movie_id]) }}" class="btn btn-danger">Eliminar</a>
             </div>
         </td>
     </tr>
     @endforeach
-
-    <?php
-    /*foreach($movies as $movie):
-    ?>
-    <tr>
-        <td>{{ $movie->title }}</td>
-        <td>{{ $movie->release_date }}</td>
-        <td>$ {{ $movie->price }}</td>
-        <td>{{ $movie->synopsis }}</td>
-        <td></td>
-    </tr>
-    <?php
-    endforeach;*/
-    ?>
     </tbody>
 </table>
 @else

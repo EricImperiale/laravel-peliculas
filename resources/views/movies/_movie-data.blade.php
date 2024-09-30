@@ -15,7 +15,7 @@
         </div>
         <div class="col-3">
             <p>Acá va a ir la portada...</p>
-            {{--<img src="{{ $movie->cover }}" alt="{{ $movie->cover_description }}">--}}
+            <img src="{{ $movie->cover }}" alt="{{ $movie->cover_description }}">
         </div>
     </div>
 
