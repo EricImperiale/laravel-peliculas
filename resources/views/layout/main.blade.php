@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Session;
                         <li class="nav-item">
                             <form action="{{ route('auth.processLogout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn nav-link">{{ auth()->user()->email }} (Cerrar Sesión)</button>
+                                <button type="submit" class="btn nav-link">{{ auth()->user()->nickname ?? auth()->user()->email }} (Cerrar Sesión)</button>
                             </form>
                         </li>
                         @else
@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Session;
             @yield('main')
         </main>
         <footer class="footer">
-            <p>Da Vinci &copy; 2023</p>
+            <p>Da Vinci &copy; 2024</p>
         </footer>
     </div>
 </body>

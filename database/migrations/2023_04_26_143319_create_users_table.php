@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('email', 255)->unique();
-            $table->string('password', 255);
+            $table->string('password', 255)->nullable();
+            $table->string('nickname', 255)->nullable();
             $table->boolean('isAdmin')->default(false);
-            $table->rememberToken(); // Agrega el campo "remember_token"
+            $table->unsignedInteger('provider_id')->nullable();
+            $table->string('provider_token', 255)->nullable();
+            $table->string('provider_refresh_token', 255)->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

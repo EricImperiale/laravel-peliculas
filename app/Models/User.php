@@ -37,4 +37,15 @@ class User extends BaseUser
     protected $primaryKey = "user_id";
 
     protected $hidden = ['password', 'remember_token'];
+
+    protected $fillable = [
+        'user_id',
+        'email',
+        'password',
+        'isAdmin',
+        'nickname',
+        'provider_id',
+        'provider_token',
+        'provider_refresh_token',
+    ];
 }
