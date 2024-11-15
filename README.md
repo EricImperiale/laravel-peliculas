@@ -13,3 +13,4 @@ Además, los administradores tienen acceso a funcionalidades avanzadas, incluyen
 - Implementación de **Policies** y **Gates** para gestionar permisos y roles de usuarios.  
 - Integración con la API de **MercadoPago** para simular el proceso de reserva de películas.
 - Uso de componentes, validaciones y requests.
+- Autenticación usando Laravel Socialite con Github.
