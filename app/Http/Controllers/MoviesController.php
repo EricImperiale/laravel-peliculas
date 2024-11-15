@@ -106,9 +106,7 @@ class MoviesController extends Controller
         $movie = Movie::findOrFail($id);
 
         $this->authorize('update', $movie);
-
-        $request->validate(Movie::validationRules(), Movie::validationMessages());
-
+        
         $data = $request->except(['_token']);
 
         if($request->hasFile('cover')) {
@@ -131,7 +129,6 @@ class MoviesController extends Controller
                 ->with('status.type', 'error');
         }
 
-        // Si no hubo inconvenientes, entonces eliminamos la portada antigua.
         $this->deleteCover($oldCover ?? null);
 
         return redirect()

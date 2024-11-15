@@ -24,13 +24,6 @@
             </dl>
         </div>
         <div class="col-3">
-{{--            <p>Acá va a ir la portada...</p>--}}
-{{--            @if($movie->cover !== null && file_exists(public_path('imgs/' . $movie->cover)))--}}
-{{--                <img src="{{ url('imgs/' . $movie->cover) }}" alt="{{ $movie->cover_description }}" class="mw-100">--}}
-{{--            @else--}}
-{{--                --}}{{-- Acá deberíamos poner una imagen de "placeholder" que indique que no tenemos una portada. --}}
-{{--                <p>No hay portada.</p>--}}
-{{--            @endif--}}
             <x-movie-cover :movie="$movie" />
         </div>
     </div>
