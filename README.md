@@ -16,6 +16,6 @@ Además, los administradores tienen acceso a funcionalidades avanzadas, incluyen
 - Autenticación usando Laravel Socialite con Github.
 
 ## 🚀 Credenciales
-- email: ericimperiale@hotmail.com.
+- email: ericimperiale@hotmail.com
 - contraseña: 123
 
