@@ -1,21 +1,24 @@
-# 🎥 Aplicación de Películas  
+🎥 Aplicación de Películas
 
-Esta es una aplicación desarrollada en **Laravel 9** que permite a los usuarios:  
-- Ver y explorar el catálogo de películas.  
-- Filtrar películas según diferentes criterios.  
-- Reservar películas de forma sencilla.  
+Esta es una aplicación desarrollada en Laravel 9 que permite a los usuarios:
 
-Además, los administradores tienen acceso a funcionalidades avanzadas, incluyendo:  
-- Gestión completa de películas mediante operaciones **CRUD** (crear, leer, actualizar, eliminar).
+    Ver y explorar el catálogo de películas.
+    Filtrar películas según diferentes criterios.
+    Reservar películas de forma sencilla.
 
-## 🚀 Funcionalidades  
-- Uso de la API **Storage** para la gestión y almacenamiento de imágenes.  
-- Implementación de **Policies** y **Gates** para gestionar permisos y roles de usuarios.  
-- Integración con la API de **MercadoPago** para simular el proceso de reserva de películas.
-- Uso de componentes, validaciones y requests.
-- Autenticación usando Laravel Socialite con Github.
+Además, los administradores tienen acceso a funcionalidades avanzadas, incluyendo:
 
-## 🚀 Credenciales
-- email: ericimperiale@hotmail.com
-- contraseña: 123
+    Gestión completa de películas mediante operaciones CRUD (crear, leer, actualizar, eliminar).
 
+🚀 Funcionalidades
+
+    Uso de la API Storage para la gestión y almacenamiento de imágenes.
+    Implementación de Policies y Gates para gestionar permisos y roles de usuarios.
+    Uso de componentes, validaciones y requests.
+    Autenticación usando Laravel Socialite con Github.
+    Configuración de Mailtrap para recibir emails de confirmación de reserva.
+
+🌟 Credenciales
+
+    Email: ericimperiale@hotmail.com
+    Contraseña: 123
