@@ -17,6 +17,7 @@ Además, los administradores tienen acceso a funcionalidades avanzadas, incluyen
     Uso de componentes, validaciones y requests.
     Autenticación usando Laravel Socialite con Github.
     Configuración de Mailtrap para recibir emails de confirmación de reserva.
+    Paginación traducida al Español.
 
 🌟 Credenciales
 
