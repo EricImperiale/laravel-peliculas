@@ -6,14 +6,13 @@ use App\Models\Classification;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\PaymentProviders\MercadoPagoPayment;
 use App\Repositories\Interfaces\MovieRepository;
-use App\Repositories\MovieEloquentRepository;
 use App\Searches\MovieSearchParams;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Gate;
 
 class MoviesController extends Controller
 {
@@ -106,7 +105,7 @@ class MoviesController extends Controller
         $movie = Movie::findOrFail($id);
 
         $this->authorize('update', $movie);
-        
+
         $data = $request->except(['_token']);
 
         if($request->hasFile('cover')) {

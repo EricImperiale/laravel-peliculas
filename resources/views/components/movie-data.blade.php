@@ -1,5 +1,6 @@
 <?php
 /** @var \App\Models\Movie $movie */
+/** @var \App\PaymentProviders\MercadoPagoPayment $payment */
 ?>
 <article class="mb-3">
     <div class="row flex-row-reverse mb-3">

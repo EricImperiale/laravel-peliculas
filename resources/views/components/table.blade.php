@@ -36,7 +36,7 @@
                                 @csrf
                                 <button type="submit" class="btn btn-secondary">Reservar</button>
                             </form>
-
+                        
                             @can('update', $movie)
                                 <a href="{{ route('movies.formUpdate', ['id' => $movie->movie_id]) }}" class="btn btn-primary">Editar</a>
                             @endcan
@@ -52,6 +52,5 @@
         </tbody>
     </table>
 
-    {{-- Paginación --}}
     {{ $model->links() }}
 </div>

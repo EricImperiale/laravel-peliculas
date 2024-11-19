@@ -38,13 +38,9 @@
         <p>O también podés iniciar sesión con:</p>
     </div>
 
-    <!-- TODO: Pasar a Componente -->
     <div class="d-grid gap-2 my-2">
         <a href="{{ route('auth.github') }}" class="btn btn-dark w-100">
             <i class="bi bi-github"></i> GitHub
-        </a>
-        <a href="" class="btn btn-danger w-100">
-            <i class="bi bi-google"></i> Google
         </a>
     </div>
 </form>

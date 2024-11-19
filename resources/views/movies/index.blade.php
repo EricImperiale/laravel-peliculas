@@ -1,7 +1,4 @@
 <?php
-// Como las vistas reciben los valores "mágicamente", los editores pueden tener problemas en saber que
-// las variables están disponibles.
-// Para solventar este inconveniente, es una buena idea documentar las variables con phpDoc.
 /** @var \App\Models\Movie[]|\Illuminate\Database\Eloquent\Collection $movies */
 /** @var \App\Searches\MovieSearchParams $searchParams */
 ?>

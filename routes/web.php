@@ -87,13 +87,7 @@ Route::get('admin', [\App\Http\Controllers\AdminController::class, 'dashboard'])
  | Socialite
  |--------------------------------------------------------------------------
  */
-
-/* Route::get('github/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-})->name('auth.github'); */
-
 Route::get('/auth/redirect', [\App\Http\Controllers\Socialite\GithubController::class, 'redirect'])
     ->name('auth.github');
 
 Route::get('github/auth/callback', [\App\Http\Controllers\Socialite\GithubController::class, 'callback']);
-
