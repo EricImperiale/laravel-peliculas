@@ -18,6 +18,7 @@ Además, los administradores tienen acceso a funcionalidades avanzadas, incluyen
     Autenticación usando Laravel Socialite con Github.
     Configuración de Mailtrap para recibir emails de confirmación de reserva.
     Paginación traducida al Español.
+    Feature Test para el CRUD de las Películas 
 
 🌟 Credenciales
 
