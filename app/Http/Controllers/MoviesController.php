@@ -169,7 +169,6 @@ class MoviesController extends Controller
     {
         $cover = $request->file('cover');
 
-
         $coverName = date('YmdHis-') . \Str::slug($request->input('title')) . "." . $cover->guessExtension();
 
         $cover->storeAs('imgs', $coverName);

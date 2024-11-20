@@ -9,6 +9,9 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 use App\Models\User;
 
+// TODO:
+// Test para verificar que no se pueda crear una Movie vacia
+// Test para verificar que solo admin pueda crear una Movie
 class MovieTest extends TestCase
 {
     use RefreshDatabase;
@@ -22,6 +25,27 @@ class MovieTest extends TestCase
         $user->isAdmin = true;
 
         return $this->actingAs($user);
+    }
+
+    public function test_cannot_create_a_movie_without_permission()
+    {
+        $user = new User();
+        $user->user_id = 2;
+        $user->isAdmin = false;
+
+        $postData = [
+            'country_id' => 2,
+            'classification_id' => 1,
+            'title' => 'Corazón de Dragón',
+            'synopsis' => 'La aventura de un caballero con el último dragón.',
+            'release_date' => '1998-02-16',
+            'price' => 19.99,
+        ];
+
+        $response = $this->actingAs($user)->postJson('/api/movies', $postData);
+
+        $response
+            ->assertStatus(403);
     }
 
     public function test_can_determine_if_admin_can_get_all_movies(): void

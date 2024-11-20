@@ -27,6 +27,8 @@ class MoviesAdminController extends Controller
 
     public function create(Request $request)
     {
+        $this->authorize('create', Movie::class);
+
         $movie = Movie::create($request->only(['country_id', 'classification_id', 'title', 'release_date', 'price' , 'synopsis', 'cover', 'cover_description']));
 
         return response()->json([
@@ -39,6 +41,8 @@ class MoviesAdminController extends Controller
     {
         $movie = Movie::findOrFail($id);
 
+        $this->authorize('update', $movie);
+
         $movie->update($request->only('title'));
 
         return response()->json([
@@ -50,6 +54,8 @@ class MoviesAdminController extends Controller
     public function delete(int $id)
     {
         $movie = Movie::findOrFail($id);
+
+        $this->authorize('delete', $movie);
 
         $movie->delete();
 
