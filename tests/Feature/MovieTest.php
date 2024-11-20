@@ -106,6 +106,15 @@ class MovieTest extends TestCase
             );
     }
 
+    public function test_cannot_get_movie_by_id_when_movie_does_not_exist(): void
+    {
+        $id = 999;
+        $response = $this->withUser()->getJson('/api/movies/' . $id);
+
+        $response
+            ->assertStatus(404);
+    }
+
     public function test_can_determine_if_admin_can_create_a_movie(): void
     {
         $postData = [
@@ -137,6 +146,20 @@ class MovieTest extends TestCase
         $response
             ->assertStatus(422);
     }
+
+    public function test_cannot_create_a_movie_with_invalid_price(): void
+    {
+        $postData = [
+            'title' => 'Corazón de Dragón',
+            'price' => -5,
+        ];
+
+        $response = $this->withUser()->postJson('/api/movies', $postData);
+
+        $response
+            ->assertStatus(422);
+    }
+
 
     public function test_can_determine_if_admin_can_update_a_movie(): void
     {

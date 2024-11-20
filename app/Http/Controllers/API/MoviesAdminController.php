@@ -31,7 +31,7 @@ class MoviesAdminController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric|gt:0',
         ]);
 
         $movie = Movie::create($request->only(['country_id', 'classification_id', 'title', 'release_date', 'price' , 'synopsis', 'cover', 'cover_description']));
