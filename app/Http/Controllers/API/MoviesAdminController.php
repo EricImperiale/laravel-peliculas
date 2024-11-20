@@ -29,6 +29,11 @@ class MoviesAdminController extends Controller
     {
         $this->authorize('create', Movie::class);
 
+        $request->validate([
+            'title' => 'required',
+            'price' => 'required',
+        ]);
+
         $movie = Movie::create($request->only(['country_id', 'classification_id', 'title', 'release_date', 'price' , 'synopsis', 'cover', 'cover_description']));
 
         return response()->json([

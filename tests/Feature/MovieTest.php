@@ -128,6 +128,16 @@ class MovieTest extends TestCase
             );
     }
 
+    public function test_can_determine_if_admin_cannot_create_a_movie_with_empty_data(): void
+    {
+        $postData = [];
+
+        $response = $this->withUser()->postJson('/api/movies', $postData);
+
+        $response
+            ->assertStatus(422);
+    }
+
     public function test_can_determine_if_admin_can_update_a_movie(): void
     {
         $id = 1;
