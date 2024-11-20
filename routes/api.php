@@ -18,7 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Todas las rutas tiene automáticamente el prefijo "api/".
 Route::get('/movies', [\App\Http\Controllers\API\MoviesAdminController::class, 'index'])
     ->middleware(['auth']);
 Route::get('/movies/{id}', [\App\Http\Controllers\API\MoviesAdminController::class, 'view'])
@@ -26,3 +25,8 @@ Route::get('/movies/{id}', [\App\Http\Controllers\API\MoviesAdminController::cla
 
 Route::post('/movies', [\App\Http\Controllers\API\MoviesAdminController::class, 'create'])
     ->middleware(['auth']);
+Route::put('/movies/{id}', [\App\Http\Controllers\API\MoviesAdminController::class, 'update'])
+    ->middleware(['auth']);
+Route::delete('/movies/{id}', [\App\Http\Controllers\API\MoviesAdminController::class, 'delete'])
+    ->middleware(['auth']);
+

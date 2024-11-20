@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class MoviesAdminController extends Controller
 {
+    // TODO: Valdaciones, Respetar Polcies
     public function index()
     {
         return response()->json([
@@ -31,6 +32,29 @@ class MoviesAdminController extends Controller
         return response()->json([
             'status' => 0,
             'data' => $movie
+        ]);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $movie->update($request->only('title'));
+
+        return response()->json([
+            'status' => 0,
+            'data' => $movie,
+        ]);
+    }
+
+    public function delete(int $id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $movie->delete();
+
+        return response()->json([
+            'status' => 0,
         ]);
     }
 }
